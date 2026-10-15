@@ -1,0 +1,252 @@
+/* Bar: peacock night deck */
+.bar {
+  padding-block: var(--space-6);
+  background: var(--peacock-deep);
+  color: var(--rice);
+}
+
+.barGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+.barPhoto,
+.occPhoto {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.barPhoto {
+  aspect-ratio: 4 / 5;
+  max-height: 640px;
+}
+
+.barPhoto img,
+.occPhoto img {
+  object-fit: cover;
+}
+
+.barText {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.barText h2 {
+  color: var(--marigold);
+}
+
+.barText > p:not(:global(.lede)) {
+  color: var(--on-peacock-soft);
+  max-width: 50ch;
+}
+
+/* Occasions: marigold field */
+.occasions {
+  padding-block: var(--space-6);
+  background: var(--marigold);
+  color: var(--ink);
+}
+
+.occGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-5);
+}
+
+.occHead {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.occPhoto {
+  aspect-ratio: 4 / 3;
+  margin-top: var(--space-3);
+  rotate: -2deg;
+  border: 8px solid var(--rice);
+  box-shadow: var(--shadow-ticket);
+}
+
+.occList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.occList li {
+  display: grid;
+  gap: var(--space-2);
+  padding-block: var(--space-4);
+  border-bottom: 2px dashed rgb(43 27 16 / 0.3);
+}
+
+.occList li:first-child {
+  padding-top: 0;
+}
+
+.occList h3 {
+  font-size: var(--step-4);
+}
+
+.occList p {
+  max-width: 52ch;
+  font-size: 1.125rem;
+}
+
+.occList a {
+  justify-self: start;
+  font-weight: 700;
+  padding-block: var(--space-1);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.occList a:hover {
+  color: var(--chilli-deep);
+}
+
+/* Visit + FAQ: rice paper */
+.visit {
+  padding-block: var(--space-6);
+  background: var(--rice);
+}
+
+.visitGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.visitText {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.visitText h2,
+.faq h2 {
+  color: var(--peacock-deep);
+}
+
+.facts {
+  display: grid;
+  gap: var(--space-3);
+  margin: var(--space-3) 0 0;
+}
+
+.facts dt {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+  color: var(--chilli-deep);
+}
+
+.facts dt svg {
+  width: 20px;
+  height: 20px;
+}
+
+.facts dd {
+  display: grid;
+  margin: var(--space-1) 0 0 28px;
+  color: var(--ink-soft);
+}
+
+.visitActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.visitActions :global(.btn-ghost) {
+  color: var(--peacock-deep);
+}
+
+.chart {
+  margin: 0;
+}
+
+.chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.chart figcaption {
+  margin-top: var(--space-2);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.faq {
+  margin-top: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: var(--space-5);
+}
+
+.faqList details {
+  border-bottom: 1px solid var(--rice-shade);
+}
+
+.faqList summary {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-3);
+  font-family: var(--font-display-stack);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faqList summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqList summary::after {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 0.4em;
+  border-right: 2.5px solid var(--chilli);
+  border-bottom: 2.5px solid var(--chilli);
+  rotate: 45deg;
+  transition: rotate 200ms var(--ease-out);
+}
+
+.faqList details[open] summary::after {
+  rotate: -135deg;
+}
+
+.faqList summary:hover {
+  color: var(--chilli-deep);
+}
+
+.faqList details p {
+  padding-bottom: var(--space-3);
+  max-width: 62ch;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .barGrid,
+  .occGrid,
+  .visitGrid,
+  .faq {
+    grid-template-columns: 1fr;
+  }
+
+  .faq {
+    gap: var(--space-3);
+  }
+}

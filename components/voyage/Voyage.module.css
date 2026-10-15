@@ -1,0 +1,276 @@
+/* Voyage chart: faint graticule and soundings line over the sea */
+.voyage {
+  position: relative;
+  background:
+    repeating-linear-gradient(90deg, rgb(185 220 216 / 0.07) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg, rgb(185 220 216 / 0.07) 0 1px, transparent 1px 120px),
+    var(--peacock);
+  color: var(--rice);
+  overflow: hidden;
+}
+
+.track {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-3) var(--space-5);
+}
+
+.route {
+  display: none;
+}
+
+.intro {
+  max-width: 34rem;
+}
+
+.intro h2 {
+  color: var(--marigold);
+}
+
+.intro :global(.lede) {
+  margin-top: var(--space-3);
+  color: var(--rice);
+}
+
+.hint {
+  display: none;
+}
+
+.ports {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--space-4);
+  display: grid;
+  gap: var(--space-5);
+  border-left: 3px dotted var(--peacock-light);
+}
+
+.port {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.photo {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  border: 8px solid var(--rice);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.15), 0 18px 36px rgb(0 0 0 / 0.25);
+  background: var(--peacock-deep);
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: calc(var(--radius) - 8px);
+}
+
+.photo img {
+  object-fit: cover;
+}
+
+.portText {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.portText h3 {
+  color: var(--marigold);
+  font-size: var(--step-4);
+  letter-spacing: -0.02em;
+}
+
+.portText > p:not(.cuisine) {
+  max-width: 40ch;
+  color: var(--rice);
+}
+
+.stamp,
+.live {
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-family: var(--font-display-stack);
+  line-height: 1;
+  filter: drop-shadow(0 2px 2px rgb(0 0 0 / 0.25));
+}
+
+.stamp > svg,
+.live > svg {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+}
+
+.stamp > span,
+.live > span {
+  grid-area: 1 / 1;
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 0.25);
+}
+
+.stamp {
+  position: absolute;
+  left: calc(-1 * var(--space-4) - 26px);
+  top: -6px;
+  width: 50px;
+  height: 50px;
+  font-size: 1.4rem;
+}
+
+.live {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 76px;
+  height: 76px;
+  rotate: 10deg;
+  font-family: var(--font-text-stack);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.live > span {
+  align-self: end;
+  padding-bottom: 17px;
+  color: #ffd9cc;
+}
+
+.cuisine {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--on-peacock-soft);
+}
+
+.dishes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dishes li {
+  padding: 4px 12px;
+  border: 1.5px solid var(--peacock-light);
+  border-radius: var(--radius-pill);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.outro {
+  display: grid;
+  gap: var(--space-3);
+  justify-items: start;
+}
+
+.outro h3 {
+  font-size: var(--step-4);
+  color: var(--marigold);
+}
+
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .voyage {
+    height: 100svh;
+  }
+
+  .track {
+    flex-direction: row;
+    align-items: center;
+    gap: 7vw;
+    width: max-content;
+    height: 100%;
+    padding: 72px 10vw 0 max(var(--space-4), (100vw - var(--container)) / 2);
+  }
+
+  .route {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .routeBase,
+  .routeDraw {
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  .routeBase {
+    stroke: var(--peacock-light);
+    stroke-width: 4;
+    stroke-dasharray: 1 14;
+  }
+
+  .routeDraw {
+    stroke: var(--marigold);
+    stroke-width: 4;
+  }
+
+  .intro {
+    flex: none;
+    width: min(36rem, 38vw);
+  }
+
+  .hint {
+    display: inline-flex;
+    margin-top: var(--space-4);
+    font-weight: 700;
+    color: var(--marigold-soft);
+  }
+
+  .ports {
+    display: flex;
+    gap: 7vw;
+    padding: 0;
+    border: 0;
+  }
+
+  .port {
+    flex: none;
+    width: clamp(520px, 44vw, 720px);
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .port:nth-child(even) {
+    transform: translateY(9vh);
+  }
+
+  .port:nth-child(odd) {
+    transform: translateY(-7vh);
+  }
+
+  .port:nth-child(even) .photo {
+    rotate: 2deg;
+  }
+
+  .port:nth-child(odd) .photo {
+    rotate: -2deg;
+  }
+
+  .photo {
+    aspect-ratio: 4 / 5;
+  }
+
+  .stamp {
+    position: static;
+    margin-bottom: var(--space-2);
+  }
+
+  .outro {
+    flex: none;
+    width: 26rem;
+  }
+}
