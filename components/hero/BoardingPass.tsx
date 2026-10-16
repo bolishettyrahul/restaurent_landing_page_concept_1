@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { fares, whatsappLink, brandName } from "@/content/site";
 import { Icon } from "@/components/Icon";
 import styles from "./BoardingPass.module.css";
@@ -26,28 +26,29 @@ export function BoardingPass() {
     if (dateInput.current) dateInput.current.min = today();
   }, []);
 
-  function submit(e: FormEvent) {
-    e.preventDefault();
+  // A real link, so it works before hydration and can be long-pressed or copied.
+  // Without a date it still opens WhatsApp; the date is agreed in the chat.
+  const when = date
+    ? new Date(`${date}T12:00:00`).toLocaleDateString("en-IN", { weekday: "short", day: "numeric", month: "short" })
+    : "a date to confirm";
+  const href = whatsappLink(
+    `Hi! I'd like to reserve a table at ${brandName} for ${guests} ${guests === 1 ? "guest" : "guests"} on ${when} (${session}, ${fare}).`,
+  );
+
+  function check(e: MouseEvent) {
     if (!date) {
+      e.preventDefault();
       setError("Pick a date for your voyage.");
-      return;
-    }
-    if (date < today()) {
+    } else if (date < today()) {
+      e.preventDefault();
       setError("That date has already sailed. Pick today or later.");
-      return;
+    } else {
+      setError("");
     }
-    setError("");
-    const pretty = new Date(`${date}T12:00:00`).toLocaleDateString("en-IN", {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-    });
-    const msg = `Hi ${brandName}! I'd like to book a table.\nDate: ${pretty}\nSession: ${session}\nGuests: ${guests}\nFare: ${fare}`;
-    window.open(whatsappLink(msg), "_blank", "noopener");
   }
 
   return (
-    <form id="book" className={styles.pass} onSubmit={submit} noValidate aria-label="Book a table">
+    <div id="book" role="group" className={styles.pass} aria-label="Book a table">
       <div className={styles.stub} aria-hidden="true">
         <span className={styles.route}>
           HYD <Icon name="arrow" /> {brandName}
@@ -98,15 +99,15 @@ export function BoardingPass() {
           </select>
         </label>
 
-        <button type="submit" className={`btn btn-primary ${styles.submit}`}>
+        <a href={href} target="_blank" rel="noopener" onClick={check} className={`btn btn-primary ${styles.submit}`}>
           <Icon name="whatsapp" />
           Reserve on WhatsApp
-        </button>
+        </a>
       </div>
 
       <p id="pass-error" className={styles.error} role="alert">
         {error}
       </p>
-    </form>
+    </div>
   );
 }

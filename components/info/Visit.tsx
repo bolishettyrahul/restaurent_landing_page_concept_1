@@ -9,7 +9,7 @@ export function Visit() {
       <div className={`container ${styles.visitGrid}`}>
         <div className={styles.visitText}>
           <h2 id="visit-title">Find the harbour</h2>
-          <p className="lede">5th floor of Sarath City Capital Mall, on the Gachibowli–Miyapur Road in Kondapur.</p>
+          <p className="lede">5th floor of {contact.venue}, {contact.locality}, {contact.city}.</p>
 
           <dl className={styles.facts}>
             <div>

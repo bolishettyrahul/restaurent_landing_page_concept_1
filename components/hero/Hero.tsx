@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { fares, brandName } from "@/content/site";
+import { fares, brandName, contact } from "@/content/site";
 import { HarbourScene } from "./HarbourScene";
 import { BoardingPass } from "./BoardingPass";
 import styles from "./Hero.module.css";
@@ -70,13 +70,13 @@ export function Hero() {
         <p className={styles.quote} data-reveal>
           “Set sail from Hyderabad. Seven ports, one table, and nowhere you’d rather be.”
         </p>
-        <h1 id="hero-title" className={styles.title} data-reveal>
+        <p className={styles.title} data-reveal>
           All Aboard.
-        </h1>
-        <p className={styles.sub} data-reveal>
-          {brandName}: a buffet voyage on the 5th floor of Sarath City Capital Mall, from ₹{lowestFare},
-          lunch and dinner.
         </p>
+        <h1 id="hero-title" className={styles.sub} data-reveal>
+          {brandName}: unlimited buffet in {contact.locality}, {contact.city}. On the 5th floor of{" "}
+          {contact.venue}, from ₹{lowestFare}, lunch and dinner.
+        </h1>
         <div className={styles.actions} data-reveal>
           <a href="#book" className="btn btn-primary">
             Book a table

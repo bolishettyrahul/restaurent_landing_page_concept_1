@@ -100,8 +100,10 @@
 
 .occList a {
   justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-weight: 700;
-  padding-block: var(--space-1);
   text-decoration: underline;
   text-decoration-thickness: 2px;
 }

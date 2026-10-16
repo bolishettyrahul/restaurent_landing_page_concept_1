@@ -3,7 +3,23 @@
   inset: 0 0 auto;
   z-index: 50;
   color: var(--ink);
-  transition: background-color 300ms var(--ease-out), box-shadow 300ms var(--ease-out);
+  transition: background-color 300ms var(--ease-out), box-shadow 300ms var(--ease-out),
+    transform 300ms var(--ease-out);
+}
+
+/* Stays visible for keyboard users even while scrolled away */
+.hidden:not(:focus-within) {
+  transform: translateY(-100%);
+}
+
+/* Concept credit: not dismissible, by design */
+.concept {
+  padding: 6px var(--space-3);
+  background: var(--ink);
+  color: var(--rice);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-align: center;
 }
 
 .solid {
@@ -16,11 +32,17 @@
   align-items: center;
   gap: var(--space-4);
   min-height: 72px;
+  transition: min-height 300ms var(--ease-out);
+}
+
+.solid .bar {
+  min-height: 56px;
 }
 
 .brand {
   display: flex;
   align-items: center;
+  min-height: 44px;
   gap: var(--space-2);
   min-width: 0;
   font-family: var(--font-display-stack);
@@ -85,13 +107,61 @@
   height: 18px;
 }
 
+/* Phones and tablets: the sections become a swipeable strip of port chips */
 @media (max-width: 960px) {
+  .bar {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
   .nav {
+    order: 3;
+    flex-basis: 100%;
+    gap: var(--space-2);
+    margin: 0 calc(-1 * var(--space-3));
+    padding: 0 var(--space-3) var(--space-2);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--space-3);
+    scrollbar-width: none;
+  }
+
+  .nav::-webkit-scrollbar {
     display: none;
+  }
+
+  .nav a {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-pill);
+    background: var(--rice);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+
+  .nav a:hover {
+    background: var(--rice-shade);
   }
 
   .call {
     margin-left: auto;
+  }
+}
+
+/* Phones, once scrolled: just the banner and the chips. Call lives in the dock. */
+@media (max-width: 760px) {
+  .solid .brand,
+  .solid .call {
+    display: none;
+  }
+
+  .solid .nav {
+    padding-top: var(--space-2);
   }
 }
 

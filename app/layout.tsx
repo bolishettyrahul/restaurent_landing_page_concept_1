@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Mukta, Rozha_One } from "next/font/google";
-import { brandName } from "@/content/site";
+import { brandName, contact, fares, siteUrl, CONCEPT_MODE } from "@/content/site";
 import "./globals.css";
 
 const display = Rozha_One({
@@ -15,19 +15,26 @@ const text = Mukta({
   subsets: ["latin"],
 });
 
+const [veg, nonVeg] = fares.map((f) => f.price);
+
 export const metadata: Metadata = {
-  title: `${brandName} · All Aboard`,
-  description:
-    "A multi-cuisine buffet voyage with six live counters on the 5th floor of Sarath City Capital Mall, Kondapur, Hyderabad.",
+  metadataBase: new URL(siteUrl),
+  title: `${CONCEPT_MODE ? "Concept · " : ""}${brandName} | Buffet in ${contact.locality} from ₹${veg}`,
+  description: `Unlimited multi-cuisine buffet with live counters in ${contact.locality}, ${contact.city}. Veg ₹${veg}, non-veg ₹${nonVeg}. Lunch and dinner, all 7 days. Book on WhatsApp.`,
+  alternates: { canonical: "/" },
+  robots: CONCEPT_MODE ? { index: false, follow: false } : { index: true, follow: true },
+  openGraph: { type: "website", locale: "en_IN", siteName: brandName, url: "/" },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
   themeColor: "#f2a51f",
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${display.variable} ${text.variable}`}>
+    <html lang="en-IN" className={`${display.variable} ${text.variable}`}>
       <body>{children}</body>
     </html>
   );
