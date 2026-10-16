@@ -130,9 +130,9 @@
   height: 76px;
   rotate: 10deg;
   font-family: var(--font-text-stack);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -171,8 +171,10 @@
   justify-items: start;
 }
 
-.outro h3 {
+.outroTitle {
+  font-family: var(--font-display-stack);
   font-size: var(--step-4);
+  line-height: 1.1;
   color: var(--marigold);
 }
 

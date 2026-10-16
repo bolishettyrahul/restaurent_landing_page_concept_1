@@ -1,4 +1,4 @@
-import { brandName } from "@/content/site";
+import { brandName, contact } from "@/content/site";
 import styles from "./Sections.module.css";
 
 // Hand-drawn voyage-chart of the neighbourhood. Schematic, not to scale.
@@ -8,7 +8,7 @@ export function AreaChart() {
       <svg viewBox="0 0 480 520" role="img" aria-labelledby="chart-title">
         {/* One string: mixed text + expression children in an SVG title break hydration */}
         <title id="chart-title">
-          {`Schematic map: ${brandName} is inside Sarath City Capital Mall on the Gachibowli–Miyapur Road, with Miyapur to the north and Gachibowli and HITEC City to the south.`}
+          {`Schematic map: ${brandName} is inside ${contact.venue} on the Gachibowli–Miyapur Road, with Miyapur to the north and Gachibowli and HITEC City to the south.`}
         </title>
         <rect width="480" height="520" rx="14" fill="var(--peacock)" />
         <g stroke="var(--peacock-light)" strokeWidth="1" opacity="0.6">
@@ -26,7 +26,7 @@ export function AreaChart() {
         <circle cx="335" cy="255" r="18" fill="var(--chilli)" />
         <circle cx="335" cy="255" r="7" fill="var(--rice)" />
         <g fill="var(--rice)" fontFamily="var(--font-text-stack)" fontWeight="700" fontSize="15">
-          <text x="276" y="196">Sarath City Capital Mall</text>
+          <text x="276" y="196">{contact.venue}</text>
           <text x="276" y="322" fontWeight="500" fontSize="14">{`5th floor · ${brandName}`}</text>
           <text x="60" y="50" fontSize="16">Miyapur</text>
           <text x="40" y="478" fontSize="16">Gachibowli · HITEC City</text>

@@ -1,25 +1,36 @@
-// DEMO CONTENT. Prices, dish count, counters and timings are sample values
-// for the client preview. Replace with confirmed figures before launch.
+// DEMO CONTENT. The only file to edit per prospect: name, contact, address,
+// prices, timings and photos all come from here.
 
-// Placeholder: put the restaurant's real name here and it updates everywhere.
-export const brandName = "[your-restaurent-name]";
+// Concept builds are noindex and carry the concept banner. Set
+// NEXT_PUBLIC_CONCEPT_MODE=false only on a site the restaurant has approved.
+export const CONCEPT_MODE = process.env.NEXT_PUBLIC_CONCEPT_MODE !== "false";
+
+// Fictional demo name. Never a real brand unless it is that brand's pitch branch.
+export const brandName = "Harbour Buffet";
+export const siteUrl = "https://buffet-concept-rahul.netlify.app";
+
+// Per prospect, set to their name: the banner adds "Not the official X website".
+export const prospectName: string | null = null;
+export const conceptCredit = "Concept by Rahul, CBIT Hyderabad · Sample brand, prices and photos";
 
 export const contact = {
-  phoneDisplay: "+91 82477 08238",
-  phoneHref: "tel:+918247708238",
-  whatsapp: "918247708238",
-  email: "bolishettyrahul11@gmail.com",
-  addressLines: [
-    "5th Floor, Sarath City Capital Mall",
-    "Gachibowli – Miyapur Rd, Kondapur",
-    "Hyderabad, Telangana 500084",
-  ],
-  mapsHref:
-    "https://www.google.com/maps/search/?api=1&query=Sarath+City+Capital+Mall+Kondapur+Hyderabad",
+  // Pitch number and email, never personal ones.
+  phoneDisplay: "+91 00000 00000",
+  phoneHref: "tel:+910000000000",
+  whatsapp: "910000000000",
+  email: "hello@yourpitchdomain.com",
+  venue: "Sample Mall",
+  locality: "Kondapur",
+  city: "Hyderabad",
+  region: "Telangana",
+  addressLines: ["5th Floor, Sample Mall", "Kondapur, Hyderabad", "Telangana 500000"],
+  mapsHref: "https://www.google.com/maps/search/?api=1&query=Kondapur+Hyderabad",
 };
 
 export const whatsappLink = (message: string) =>
   `https://wa.me/${contact.whatsapp}?text=${encodeURIComponent(message)}`;
+
+export const cuisines = ["Hyderabadi", "North Indian", "South Indian", "Indo-Chinese", "Italian"];
 
 export const fares = [
   {
@@ -174,22 +185,22 @@ export const spread: { course: string; items: { name: string; diet: Diet }[] }[]
 ];
 
 export const occasions = [
-  { name: "Birthdays", line: "Tell us whose day it is when you book, and we'll set the table for a celebration. Ask about cakes and decorations." },
-  { name: "Team lunches", line: "Straight from HITEC City and Kondapur. Long tables for the whole team, a weekday lunch that fits the break, and one bill." },
-  { name: "Anniversaries", line: "Ask for a quieter table and we'll do our best to find one for the two of you." },
-  { name: "Family gatherings", line: "A kids' price, plenty of mild dishes, and a dessert island the children will remember." },
+  { name: "Birthdays", message: `Hi! I'd like to plan a birthday at ${brandName}.`, line: "Tell us whose day it is when you book, and we'll set the table for a celebration. Ask about cakes and decorations." },
+  { name: "Team lunches", message: `Hi! I'd like to book a team lunch at ${brandName}.`, line: "Straight from HITEC City and Kondapur. Long tables for the whole team, a weekday lunch that fits the break, and one bill." },
+  { name: "Anniversaries", message: `Hi! I'd like to plan an anniversary dinner at ${brandName}.`, line: "Ask for a quieter table and we'll do our best to find one for the two of you." },
+  { name: "Family gatherings", message: `Hi! I'd like to book a family gathering at ${brandName}.`, line: "A kids' price, plenty of mild dishes, and a dessert island the children will remember." },
 ];
 
 export const timings = [
-  { session: "Lunch", hours: "12:00 – 4:00 pm" },
-  { session: "Dinner", hours: "7:00 – 11:00 pm" },
+  { session: "Lunch", opens: "12:00", closes: "16:00", hours: "12:00 – 4:00 pm" },
+  { session: "Dinner", opens: "19:00", closes: "23:00", hours: "7:00 – 11:00 pm" },
 ];
 
 export const faqs = [
   { q: "Do I need to book?", a: "Weekends and evenings fill up fast, so we recommend booking. Send us a WhatsApp or call to reserve." },
   { q: "Is the price the same for lunch and dinner?", a: "Yes. One price, every session, all seven days. Drinks from the bar are charged separately." },
   { q: "What do children pay?", a: `Children aged ${kidsFare.ages} pay ₹${kidsFare.price}. Ask us about younger children when you book.` },
-  { q: "Is there parking?", a: "Yes. Sarath City Capital Mall has multi-level parking. Take the lifts to the 5th floor; we're on the food level." },
+  { q: "Is there parking?", a: `Yes. ${contact.venue} has multi-level parking. Take the lifts to the 5th floor; we're on the food level.` },
   { q: "Are veg and non-veg kept separate?", a: "Every dish is marked with the green vegetarian or brown non-vegetarian symbol. Ask our team about how dishes are prepared." },
   { q: "Do you host large groups and corporate events?", a: "Yes. Message us with your date and headcount and we'll plan the table with you." },
 ];

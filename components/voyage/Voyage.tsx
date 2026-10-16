@@ -63,7 +63,7 @@ export function Voyage() {
         </ol>
 
         <div className={styles.outro}>
-          <h3>Back in harbour, very full.</h3>
+          <p className={styles.outroTitle}>Back in harbour, very full.</p>
           <p>One price takes you through every port.</p>
           <a href="#fares" className="btn btn-primary">
             See the prices

@@ -22,7 +22,7 @@
 
 .copy {
   position: relative;
-  padding-top: clamp(112px, 16vh, 168px);
+  padding-top: clamp(144px, 20vh, 200px);
   will-change: transform;
 }
 
@@ -36,6 +36,7 @@
 
 .title {
   margin-top: var(--space-3);
+  font-family: var(--font-display-stack);
   font-size: var(--step-display);
   letter-spacing: -0.03em;
   line-height: 1;
@@ -44,6 +45,7 @@
 
 .sub {
   margin-top: var(--space-3);
+  font-family: var(--font-text-stack);
   max-width: 34ch;
   font-size: var(--step-1);
   line-height: 1.45;
@@ -76,7 +78,7 @@
 
   .copy {
     order: 1;
-    padding-top: 96px;
+    padding-top: 200px;
   }
 
   .quote {

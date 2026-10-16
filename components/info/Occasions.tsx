@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { occasions, whatsappLink, brandName } from "@/content/site";
+import { occasions, whatsappLink } from "@/content/site";
 import styles from "./Sections.module.css";
 
 export function Occasions() {
@@ -21,11 +21,7 @@ export function Occasions() {
             <li key={o.name}>
               <h3>{o.name}</h3>
               <p>{o.line}</p>
-              <a
-                href={whatsappLink(`Hi ${brandName}! I'm planning a ${o.name.toLowerCase().replace(/s$/, "")} with you.`)}
-                target="_blank"
-                rel="noopener"
-              >
+              <a href={whatsappLink(o.message)} target="_blank" rel="noopener">
                 Plan it on WhatsApp
               </a>
             </li>
